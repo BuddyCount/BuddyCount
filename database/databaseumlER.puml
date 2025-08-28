@@ -7,17 +7,26 @@ enum Currency {
   ...
 }
 
+enum ExpenseCategory {
+  FOOD
+  TRANSPORT
+  HOUSING
+  UTILITIES
+  OTHER
+}
+
 class "Group" {
-  token: string/uuid
+  {static} id: string/uuid
   linkToken: string/uuid
   name: string
   description: string
   currency: Currency
-  users: json
+  users: UserIndex
   
   creationDate: date
   lastUpdated: date
-
+  version: int
+  --
   ** Computable values **
   totalExpenses: float
   userExpenses: float[]
@@ -25,13 +34,13 @@ class "Group" {
   expensesPrediction: TBD
 }
 
-note right of Group
+note top of Group
     Check if better to store computable
     values or recompute them each time
 end note
 
 class "Expense" {
-  id: int
+  {static} id: int
   name: string
   category: ExpenseCategory
   currency: Currency
@@ -41,32 +50,34 @@ class "Expense" {
   
   creationDate: date
   lastUpdated: date
+  version: int
 
-  paidBy: json
-  paidFor: json
+  paidBy: PaidDetails
+  paidFor: PaidDetails
 }
 
 Group "1" -- "*" Expense
-Currency -l[hidden]- Expense
 
 /'Comment all below if your visualiser doesn't support json'/
 
-json "paidBy/paidFor" {
-  "repartitionType": "\"portions\" | \"amount\"",
-  "values": "[userId: { 'amount':'float', 'share?':float }, ...]"
+json "PaidDetails" {
+  "repartitionType": "\"equal\" | \"portions\" | \"amount\"",
+  "values": "['userId': int; 'values': { 'amount?':float, 'share?':float }, ...]"
 }
 
-"paidBy/paidFor" -r[hidden]- Expense
+"PaidDetails" -l[hidden]- Expense
 
-json "user" {
-    "indexes" : "[{'id':'name'}, ...]",
-    "maybeExpenses?":"",
-    "maybeBalances?":""
+json "UserIndex" {
+    "id":"int",
+    "name":"str"
+    /'"indexes" : "[{'id':int; 'name':str}, ...]",'/
+    /'"maybeExpenses?":"",'/
+    /'"maybeBalances?":""'/
 }
 
-user -r[hidden]- Group
+UserIndex -l[hidden]- Group
 
-note top of user
+note right of UserIndex
     Check if better to store user expenses
     and balances in two attributes
     or in one json object
