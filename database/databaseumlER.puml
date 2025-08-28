@@ -1,0 +1,75 @@
+@startuml databaseumlER
+
+enum Currency {
+  USD
+  EUR
+  CHF
+  ...
+}
+
+class "Group" {
+  token: string/uuid
+  linkToken: string/uuid
+  name: string
+  description: string
+  currency: Currency
+  users: json
+  
+  creationDate: date
+  lastUpdated: date
+
+  ** Computable values **
+  totalExpenses: float
+  userExpenses: float[]
+  balanceExpenses: json?
+  expensesPrediction: TBD
+}
+
+note right of Group
+    Check if better to store computable
+    values or recompute them each time
+end note
+
+class "Expense" {
+  id: int
+  name: string
+  category: ExpenseCategory
+  currency: Currency
+  exchange_rate: float
+  date: date
+  amount: float
+  
+  creationDate: date
+  lastUpdated: date
+
+  paidBy: json
+  paidFor: json
+}
+
+Group "1" -- "*" Expense
+Currency -l[hidden]- Expense
+
+/'Comment all below if your visualiser doesn't support json'/
+
+json "paidBy/paidFor" {
+  "repartitionType": "\"portions\" | \"amount\"",
+  "values": "[userId: { 'amount':'float', 'share?':float }, ...]"
+}
+
+"paidBy/paidFor" -r[hidden]- Expense
+
+json "user" {
+    "indexes" : "[{'id':'name'}, ...]",
+    "maybeExpenses?":"",
+    "maybeBalances?":""
+}
+
+user -r[hidden]- Group
+
+note top of user
+    Check if better to store user expenses
+    and balances in two attributes
+    or in one json object
+end note
+
+@enduml
