@@ -62,7 +62,7 @@ Group "1" -- "*" Expense
 
 json "PaidDetails" {
   "repartitionType": "\"equal\" | \"portions\" | \"amount\"",
-  "values": "['userId': int; 'values': { 'amount?':float, 'share?':float }, ...]"
+  "repartition": "['userId': int; 'values': { 'amount?':float, 'share?':float }, ...]"
 }
 
 "PaidDetails" -l[hidden]- Expense
