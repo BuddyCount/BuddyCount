@@ -46,10 +46,13 @@ If you'd like to contribute code to BuddyCount, first of all, thanks! Its thanks
 
 To make this process efficient, please follow these steps:
 
-1. Create a new branch for your changes and link it to the issue you are working on.
-2. Implement your changes.
-3. Run the tests (and if necessary, implement others) and make sure they pass.
-4. Create a pull request to the main repository, referencing the issue you are working on.
-5. Make sure the CICD pipeline is passing (test, build, lint, etc.).
-6. Wait for the code review and the merge.
-7. Congrats! You've contributed to BuddyCount.
+1. Setup your machine to be able to run BuddyCount locally. See the [Deploying locally](../README.md#deploying-locally) section for more details.
+2. Make sure your planned changes are aligned with the requirements and the architecture.
+3. Create a new branch for your changes and link it to the issue you are working on.
+4. Implement your changes. Commit regularly, and push your changes to your branch.
+5. Run the tests (and if necessary, implement more tests) and make sure they pass.
+6. Rebase your branch on the main branch.
+7. Create a pull request to the main repository, referencing the issue you are working on. Make sure it has a descriptive title and a detailed description.
+8. Make sure the CICD pipeline is passing (test, build, lint, etc.).
+9. Wait for the code review and the squash merge.
+10. Congrats! You've contributed to BuddyCount.
