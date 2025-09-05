@@ -21,8 +21,6 @@ Users can choose and select the members of the group that are concerned by the e
 
 Users can modify and update existing expenses.
 
-The app must categorize the expense automatically in case the user didn't.
-
 Users can upload images with their expense.
 
 Users can select the shares of each user concerned by the expense.
