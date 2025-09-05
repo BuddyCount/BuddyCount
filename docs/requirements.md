@@ -2,62 +2,96 @@
 
 ## Functional requirements
 
-Groupe creation
+### Group creation 
+Users can create a group via a dedicated widget on the welcome page.
 
-Users can create group and invite other users in it using an invite link.
-Users can join group and choose a pseudonym while doing so, using a received invite link.
+Users can invite any other user using an auto-generated invite link.
 
-Expense Tracking
+Users can join an existing group via an invite link provided by another user, and choose their name in a list of members of said group.
 
-Users can record an expense they paid for and attribute who beneficied of it, choose the currency, optionnally categorize it.
+### Expense Tracking
 
-Users can modify existing expenses.
+Users can record an expense.
 
-The app must categorize the expense automatically in case the user didn't.
+Users can choose who paid for the expense.
 
-Expense Prediction and statistics
+Users can choose a category for their expense.
 
-The app display statistics of the budget in pie charts, that you can filter for everyone or for your expenses only.
-The app predicts upcoming expenses based on user's history. 
+Users can choose and select the members of the group that are concerned by the expense.
 
-Customizable Expenses View
+Users can modify and update existing expenses.
 
-Users can filter and sort expenses—for example by date, category, buddy, or amount. 
+Users can upload images with their expense.
 
-Multi-Currency Support
+Users can select the shares of each user concerned by the expense.
 
-The app handles and converts transactions in more than one currency. 
+Users can select multiple payers for an expense.
 
-Import/Export Data
+Users can select the date and time at which the expense was made.
 
-Enables users to import expenses from other services or export data for backup or analysis. 
 
-Account-less Usage
+### Balance tracking and debt settlement
+
+Users can easily see their balance in a dedicated widget.
+
+Users can see their debts, and specifically who they owe money to in order to settle their debt within the group.
+
+### Expense Prediction and statistics
+
+The app displays statistics via a dedicated analytics widget, which displays spending history with a plot over time.
+
+Users can filter the analytics widget in order to show expense analytics for a given user, or for a given time frame.
+
+## Customizable Expenses View
+
+All expenses are shown in a dedicated widget.
+
+Users can filter the expense list to show expenses concerning a given user, or a given time frame.
+
+Users can click on an expense to see it's inherent details, attached images.
+
+Users can delete any expense.
+
+### Multi-Currency Support
+
+Users can choose the currency of their expense.
+
+If the currency of an expense differs from the base currency of a group, the app automatically converts into that currency, via a customizable exchange rate.
+
+
+### Account-less Usage
 
 Users can operate the app without creating an account or logging in.
 
+
+### Offline functionnality
+
+Users can use all features of the app when their device is offline: group and expense creation / deletion / modification.
+
 ## Non-functional requirements
 
-User-Friendly
+User-Friendliness in UX and UI.
 
-The interface must be intuitive and accessible. 
+The interface must be intuitive and accessible by anyone.
 
-Secure Data Storage
+### Secure Data Storage
 
 All user data must be stored securely.
 
-Privacy-Oriented (Account-Less, No Personal Data Shared)
+The app must be privacy oriented, with no personal data stored, and authentified access to any service.
 
-Designed to respect user privacy by eliminating the need for personal information or accounts. 
+The app must be designed to respect user privacy by eliminating the need for personal information or accounts. 
 
-Cross-Platform Compatibility
+### Cross-Platform Compatibility
 
-The app is compatible across different devices (e.g., mobile, desktop).
+The app must be compatible with most modern platforms, namely Android and iOS devices, and web browsers.
 
-Performance & Responsiveness
+### Performance & Responsiveness
 
-The app should remain fast and responsive, even as expense entries grow.
+The app should remain fast and responsive, even as entries grow.
 
-Reliability & Offline Resilience
+### Reliability 
 
 Given account-less operation, data integrity must be ensured locally, potentially with offline capabilities or local caching.
+
+Users must be able to sync offline data with the api whenever they are back online.
