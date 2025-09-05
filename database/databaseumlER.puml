@@ -23,24 +23,13 @@ class "Group" {
   currency: Currency
   users: UserIndex
   
-  creationDate: date
-  lastUpdated: date
+  createdAt: date
+  updatedAt: date
   version: int
-  --
-  ** Computable values **
-  totalExpenses: float
-  userExpenses: float[]
-  balanceExpenses: json?
-  expensesPrediction: TBD
 }
 
-note top of Group
-    Check if better to store computable
-    values or recompute them each time
-end note
-
 class "Expense" {
-  {static} id: int
+  {static} id: string/uuid
   name: string
   category: ExpenseCategory
   currency: Currency
@@ -48,12 +37,13 @@ class "Expense" {
   date: date
   amount: float
   
-  creationDate: date
-  lastUpdated: date
+  createdAt: date
+  updatedAt: date
   version: int
 
   paidBy: PaidDetails
   paidFor: PaidDetails
+  images: string[]
 }
 
 Group "1" -- "*" Expense
@@ -61,7 +51,7 @@ Group "1" -- "*" Expense
 /'Comment all below if your visualiser doesn't support json'/
 
 json "PaidDetails" {
-  "repartitionType": "\"equal\" | \"portions\" | \"amount\"",
+  "repartitionType": "\"portions\" | \"amount\"",
   "repartition": "['userId': int; 'values': { 'amount?':float, 'share?':float }, ...]"
 }
 
@@ -76,11 +66,5 @@ json "UserIndex" {
 }
 
 UserIndex -l[hidden]- Group
-
-note right of UserIndex
-    Check if better to store user expenses
-    and balances in two attributes
-    or in one json object
-end note
 
 @enduml
