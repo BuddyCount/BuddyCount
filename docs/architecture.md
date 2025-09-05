@@ -41,6 +41,24 @@ Here's an overview of the backend architecture:
 
 ![Backend stack](../src/archi_backend.png)
 
+## Pipelines & CICD
+
+We use GitHub Actions to run the unit tests and build the backend Docker image.
+
+We have two main pipelines:
+
+### Frontend pipeline
+
+This pipeline runs the unit tests and builds the frontend app.
+
+### Backend pipeline
+
+This pipeline runs the unit tests, verifies code formatting and checks linting. It then builds the backend Docker image, tags it with the version and pushes it to the GitHub Container Registry.
+
+### Deploy pipeline
+
+This pipeline is not implemented yet. Ideally, it will be triggered whenever something is merged into the main branch of either the frontend or the backend repository. It will then deploy the new version to the Azure VM by pulling the new Docker image and restarting the services.
+
 ## Deployments
 
 We deploy BuddyCount on an Azure VM. We use DuckDNS to get a domain name for the VM. We use Traefik as a reverse proxy to route the requests to the correct services. 
